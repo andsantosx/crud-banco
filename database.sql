@@ -19,7 +19,7 @@ CREATE TABLE quartos (
 
 CREATE TABLE reservas (
     id_reserva SERIAL PRIMARY KEY,
-    id_cliente INT REFERENCES clientes(id_cliente),
+    id_cliente INT REFERENCES clientes(id_cliente) ON DELETE CASCADE,
     data_checkin DATE NOT NULL,
     data_checkout DATE NOT NULL,
     status VARCHAR(30) DEFAULT 'pendente',
@@ -28,13 +28,13 @@ CREATE TABLE reservas (
 
 CREATE TABLE reservas_quartos (
     id_reserva INT REFERENCES reservas(id_reserva) ON DELETE CASCADE,
-    id_quarto INT REFERENCES quartos(id_quarto),
+    id_quarto INT REFERENCES quartos(id_quarto) ON DELETE CASCADE,
     PRIMARY KEY (id_reserva, id_quarto)
 );
 
 CREATE TABLE pagamentos (
     id_pagamento SERIAL PRIMARY KEY,
-    id_reserva INT REFERENCES reservas(id_reserva),
+    id_reserva INT REFERENCES reservas(id_reserva) ON DELETE CASCADE,
     valor_total DECIMAL(10,2) NOT NULL,
     forma_pagamento VARCHAR(30),
     status_pagamento VARCHAR(20) DEFAULT 'pendente',
@@ -52,7 +52,7 @@ CREATE TABLE funcionarios (
 
 CREATE TABLE checkins (
     id_checkin SERIAL PRIMARY KEY,
-    id_reserva INT REFERENCES reservas(id_reserva),
+    id_reserva INT REFERENCES reservas(id_reserva) ON DELETE CASCADE,
     id_funcionario INT REFERENCES funcionarios(id_funcionario),
     data_checkin TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -127,4 +127,4 @@ VALUES
   ('Lavanderia', 'Lavagem e secagem de roupas pessoais', 50.00),
   ('Translado Aeroporto', 'Transporte até o aeroporto internacional', 120.00),
   ('Spa', 'Massagem relaxante de 1 hora', 150.00),
-  ('Jantar', 'Buffet completo servido das 18h às 21h', 70.00); 
+  ('Jantar', 'Buffet completo servido das 18h às 21h', 70.00);
