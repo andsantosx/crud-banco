@@ -31,10 +31,10 @@ Para que o backend possa se conectar ao banco de dados e as operações de CRUD 
 
     ```env
     PORT=5432
-    DB_USER=postgres
+    DB_USER=seu_usuario_postgres
     DB_HOST=localhost
-    DB_NAME=banco_hotel
-    DB_PASSWORD=243519
+    DB_NAME=nome_do_banco
+    DB_PASSWORD=sua_senha_do_postgres
     DB_PORT=5432
     ```
 
