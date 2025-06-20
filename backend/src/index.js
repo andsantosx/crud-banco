@@ -314,4 +314,6 @@ app.delete('/reservas/:id', async (req, res) => {
   }
 });
 
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
