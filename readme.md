@@ -2,6 +2,11 @@
 
 Este é um sistema de gerenciamento hoteleiro desenvolvido com React (frontend) e Node.js (backend), utilizando PostgreSQL como banco de dados.
 
+## Alunos:
+- Anderson da Silva dos Santos
+- Gabriel Pagnam
+- Gabriel Minatto
+
 ## Funcionalidades
 
 - Gerenciamento de Clientes (CRUD)
@@ -73,5 +78,3 @@ Para que o backend possa se conectar ao banco de dados e as operações de CRUD 
     Você deverá ver a mensagem "VITE [...] ready in [...] ms" e o endereço `http://localhost:5173/`.
 
 3.  Acesse o sistema no seu navegador: `http://localhost:5173`
-
-## Estrutura do Projeto
