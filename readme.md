@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento Hoteleiro
 
-Este é um sistema de gerenciamento hoteleiro desenvolvido com React (frontend) e Node.js (backend), utilizando PostgreSQL como banco de dados.
+Este é um sistema de gerenciamento hoteleiro desenvolvido com React (frontend) e Node.js (backend) com o Framework Express.js, utilizando PostgreSQL como banco de dados.
 
 ## Alunos:
 - Anderson da Silva dos Santos
