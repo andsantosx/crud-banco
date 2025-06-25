@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -20,10 +20,10 @@ import {
   Alert,
   Box,
   CircularProgress,
-} from '@mui/material';
-import axios from 'axios';
+} from "@mui/material";
+import axios from "axios";
 
-const API_URL = 'http://localhost:3001';
+const API_URL = "http://localhost:3001";
 
 function Quartos() {
   const [quartos, setQuartos] = useState([]);
@@ -32,20 +32,20 @@ function Quartos() {
   const [loading, setLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: '',
-    severity: 'success'
+    message: "",
+    severity: "success",
   });
   const [formData, setFormData] = useState({
-    numero: '',
-    tipo: '',
-    capacidade: '',
-    preco_diaria: '',
-    status: 'disponível',
+    numero: "",
+    tipo: "",
+    capacidade: "",
+    preco_diaria: "",
+    status: "disponível",
   });
   const [formErrors, setFormErrors] = useState({});
 
-  const tiposQuarto = ['solteiro', 'casal', 'luxo', 'triplo'];
-  const statusQuarto = ['disponível', 'ocupado', 'manutenção'];
+  const tiposQuarto = ["solteiro", "casal", "luxo", "triplo"];
+  const statusQuarto = ["disponível", "ocupado", "manutenção"];
 
   useEffect(() => {
     carregarQuartos();
@@ -59,8 +59,8 @@ function Quartos() {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: 'Erro ao carregar quartos: ' + error.message,
-        severity: 'error'
+        message: "Erro ao carregar quartos: " + error.message,
+        severity: "error",
       });
     } finally {
       setLoading(false);
@@ -76,11 +76,11 @@ function Quartos() {
     setOpen(false);
     setEditando(null);
     setFormData({
-      numero: '',
-      tipo: '',
-      capacidade: '',
-      preco_diaria: '',
-      status: 'disponível',
+      numero: "",
+      tipo: "",
+      capacidade: "",
+      preco_diaria: "",
+      status: "disponível",
     });
     setFormErrors({});
   };
@@ -93,21 +93,24 @@ function Quartos() {
     }));
     // Limpa o erro do campo quando o usuário começa a digitar
     if (formErrors[name]) {
-      setFormErrors(prev => ({
+      setFormErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
   const validarFormulario = () => {
     const erros = {};
-    if (!formData.numero) erros.numero = 'Número é obrigatório';
-    if (!formData.tipo) erros.tipo = 'Tipo é obrigatório';
-    if (!formData.capacidade) erros.capacidade = 'Capacidade é obrigatória';
-    if (!formData.preco_diaria) erros.preco_diaria = 'Preço da diária é obrigatório';
-    if (parseFloat(formData.preco_diaria) <= 0) erros.preco_diaria = 'Preço deve ser maior que zero';
-    if (parseInt(formData.capacidade) <= 0) erros.capacidade = 'Capacidade deve ser maior que zero';
+    if (!formData.numero) erros.numero = "Número é obrigatório";
+    if (!formData.tipo) erros.tipo = "Tipo é obrigatório";
+    if (!formData.capacidade) erros.capacidade = "Capacidade é obrigatória";
+    if (!formData.preco_diaria)
+      erros.preco_diaria = "Preço da diária é obrigatório";
+    if (parseFloat(formData.preco_diaria) <= 0)
+      erros.preco_diaria = "Preço deve ser maior que zero";
+    if (parseInt(formData.capacidade) <= 0)
+      erros.capacidade = "Capacidade deve ser maior que zero";
     return erros;
   };
 
@@ -131,15 +134,15 @@ function Quartos() {
         await axios.put(`${API_URL}/quartos/${editando}`, dadosParaEnviar);
         setSnackbar({
           open: true,
-          message: 'Quarto atualizado com sucesso!',
-          severity: 'success'
+          message: "Quarto atualizado com sucesso!",
+          severity: "success",
         });
       } else {
         await axios.post(`${API_URL}/quartos`, dadosParaEnviar);
         setSnackbar({
           open: true,
-          message: 'Quarto criado com sucesso!',
-          severity: 'success'
+          message: "Quarto criado com sucesso!",
+          severity: "success",
         });
       }
       handleClose();
@@ -147,8 +150,8 @@ function Quartos() {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: 'Erro ao salvar quarto: ' + error.message,
-        severity: 'error'
+        message: "Erro ao salvar quarto: " + error.message,
+        severity: "error",
       });
     } finally {
       setLoading(false);
@@ -169,21 +172,21 @@ function Quartos() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Tem certeza que deseja excluir este quarto?')) {
+    if (window.confirm("Tem certeza que deseja excluir este quarto?")) {
       try {
         setLoading(true);
         await axios.delete(`${API_URL}/quartos/${id}`);
         setSnackbar({
           open: true,
-          message: 'Quarto excluído com sucesso!',
-          severity: 'success'
+          message: "Quarto excluído com sucesso!",
+          severity: "success",
         });
         carregarQuartos();
       } catch (error) {
         setSnackbar({
           open: true,
-          message: 'Erro ao excluir quarto: ' + error.message,
-          severity: 'error'
+          message: "Erro ao excluir quarto: " + error.message,
+          severity: "error",
         });
       } finally {
         setLoading(false);
@@ -192,15 +195,22 @@ function Quartos() {
   };
 
   const handleSnackbarClose = () => {
-    setSnackbar(prev => ({
+    setSnackbar((prev) => ({
       ...prev,
-      open: false
+      open: false,
     }));
   };
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 3,
+        }}
+      >
         <Typography variant="h4" component="h1">
           Gerenciamento de Quartos
         </Typography>
@@ -215,7 +225,7 @@ function Quartos() {
       </Box>
 
       {loading && (
-        <Box sx={{ display: 'flex', justifyContent: 'center', my: 3 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", my: 3 }}>
           <CircularProgress />
         </Box>
       )}
@@ -238,7 +248,9 @@ function Quartos() {
                 <TableCell>{quarto.numero}</TableCell>
                 <TableCell>{quarto.tipo}</TableCell>
                 <TableCell>{quarto.capacidade}</TableCell>
-                <TableCell>R$ {Number(quarto.preco_diaria).toFixed(2)}</TableCell>
+                <TableCell>
+                  R$ {Number(quarto.preco_diaria).toFixed(2)}
+                </TableCell>
                 <TableCell>{quarto.status}</TableCell>
                 <TableCell>
                   <Button
@@ -263,7 +275,7 @@ function Quartos() {
       </TableContainer>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{editando ? 'Editar Quarto' : 'Novo Quarto'}</DialogTitle>
+        <DialogTitle>{editando ? "Editar Quarto" : "Novo Quarto"}</DialogTitle>
         <DialogContent>
           <TextField
             margin="dense"
@@ -332,9 +344,11 @@ function Quartos() {
           </TextField>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} disabled={loading}>Cancelar</Button>
+          <Button onClick={handleClose} disabled={loading}>
+            Cancelar
+          </Button>
           <Button onClick={handleSubmit} color="primary" disabled={loading}>
-            {loading ? <CircularProgress size={24} /> : 'Salvar'}
+            {loading ? <CircularProgress size={24} /> : "Salvar"}
           </Button>
         </DialogActions>
       </Dialog>
@@ -343,12 +357,12 @@ function Quartos() {
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <Alert
           onClose={handleSnackbarClose}
           severity={snackbar.severity}
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
         >
           {snackbar.message}
         </Alert>
@@ -357,4 +371,4 @@ function Quartos() {
   );
 }
 
-export default Quartos; 
+export default Quartos;
